@@ -17,5 +17,13 @@
     "express": "^4.17.1",
     "get-ip": "^2.0.0",
     "pg": "^8.0.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RichWhitehead/book_app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RichWhitehead/book_app/issues"
+  },
+  "homepage": "https://github.com/RichWhitehead/book_app#readme"
 }
