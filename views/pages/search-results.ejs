@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Books!</title>
+  <link rel="stylesheet" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+
+  <header>
+    <h1>Books from Google</h1>
+  </header>
+
+  <main>
+    <div>
+      <% books.forEach( book => { %>
+      <div>
+        <%= book.title %> is only <%= book.amount %>
+      </div>
+      <% }) %>
+    </div>
+  </main>
+
+  <footer>&copy; Whitehead and Smith 2020</footer>
+
+  <script src="/js/app.js"></script>
+</body>
+
+</html>

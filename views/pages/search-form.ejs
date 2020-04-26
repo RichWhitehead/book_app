@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Find a Book</title>
+  <link rel="stylesheet" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+  <header>
+    <h1>Find some books</h1>
+  </header>
+  <main>
+    <form method="post" action="/search">
+      <div>
+        <input name="search" placeholder="Search Terms" />
+      </div>
+      <div>
+        <label>
+          <input type="radio" name="searchby" value="inauthor">
+          Search By Author
+        </label>
+        <label>
+          <input type="radio" name="searchby" value="intitle">
+          Search By Title
+        </label>
+      </div>
+      <button type="submit">GO!</button>
+    </form>
+  </main>
+</body>
+
+</html>
