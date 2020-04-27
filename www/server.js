@@ -8,6 +8,8 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 
+app.set ('view engine', 'ejs');
+
 app.use( express.urlencoded({extended:true }));
 
 app.use( express.static('./www') );
@@ -42,6 +44,32 @@ app.use( (err,request,response,next) => {
   response.status(500).send(err.message);
 });
 
+app.get ('/searchForm', (request, response) => {
+  response.status(200).render('pages/search-form');
+});
+
+app.post ('/search', (request, response) => {
+  let url = 'https://www.googleapis.com/books/v1/volumes';
+  let queryObject = { q:`${request.body.searchby}: ${request.body.search}`,
+  };
+superagent.get (url)
+.query(queryObject)
+.then(results => {let books = results.body.items.map(book => new Book(book.volumeInfo)); // added volumeInfo
+response.staus (200).render('pages/search-results', {books:books});
+});
+
+});
+
+// function Book(data){
+//   this.title = data.volumeInfo.title; 
+//   // this.author = 
+// }
+
+function Book(data) {
+  this.title = data.volumeInfo.title;
+  this.author = data.authors
+  this.description = data.description
+}
 // Startup
 
 function startServer() {
