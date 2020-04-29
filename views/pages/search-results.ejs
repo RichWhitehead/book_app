@@ -12,15 +12,26 @@
   <header>
     <h1>Books from Google</h1>
   </header>
-
   <main>
     <div>
-      <% books.forEach( book => { %>
-      <div>
-        <%= book.title %> is only <%= book.amount %>
-      </div>
-      <% }) %>
+      <% books.forEach (book => { %> 
     </div>
+    <section>
+    <div>
+      <%= book.image %> 
+    </div>
+    <div id="title">
+      <%= book.title %> 
+    </div>    
+    <div id="author">
+      Author Name: <%= book.author %> 
+    </div>
+    <div>
+      Description: <%= book.description %> 
+    </div>
+      <% }); %>
+    </div>
+  </section>
   </main>
 
   <footer>&copy; Whitehead and Smith 2020</footer>

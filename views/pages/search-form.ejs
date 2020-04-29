@@ -9,24 +9,25 @@
 
 <body>
   <header>
-    <h1>Find some books</h1>
+    <h1>The Best Book App</h1>
   </header>
   <main>
+    <h2>Search by Title or Author</h2>
     <form method="post" action="/search">
       <div>
-        <input name="search" placeholder="Search Terms" />
+        <input name="search" placeholder="Enter a title or author" />
       </div>
       <div>
         <label>
-          <input type="radio" name="searchby" value="inauthor">
-          Search By Author
+          <input type="radio" name="searchby" value="intitle">
+          Title
         </label>
         <label>
-          <input type="radio" name="searchby" value="intitle">
-          Search By Title
+          <input type="radio" name="searchby" value="inauthor">
+          Author
         </label>
       </div>
-      <button type="submit">GO!</button>
+      <button type="submit">Search the Google Books</button>
     </form>
   </main>
 </body>
