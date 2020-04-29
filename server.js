@@ -12,7 +12,7 @@ app.set ('view engine', 'ejs');
 
 
 
-// This is a good one
+
 app.get('/', (request, response) => {
   response.status(200).send('Hello World');
 });
@@ -34,22 +34,31 @@ app.get('/badthing', (request,response) => {
 app.get ('/searchForm', (request, response) => {
   response.status(200).render('pages/search-form');
 });
-
+// 
 app.post ('/search', (request, response) => {
   let url = 'https://www.googleapis.com/books/v1/volumes';
-  let queryObject = { q:`${request.body.searchby}: ${request.body.search}`,
+  let queryObject = { 
+    q:`${request.body.searchby}: ${request.body.search}`,
 };
+console.log(queryObject);
 superagent.get (url)
 .query(queryObject)
-.then(results => {let books = results.body.items.map(book => new Book(book.volumeInfo)); // added volumeInfo
-  response.staus (200).render('pages/search-results', {books:books});
+.then(results => {
+  let books = results.body.items.map(book => new Book (book)); // added volumeInfo
+  response.status(200).render('pages/search-results', {books: books});
 });
 
 });
+
+let url = 'https://i.imgur.com/J5LVHEL.jpg';
 
 function Book(data){
   this.title = data.volumeInfo.title; 
+  this.author = data.volumeInfo.authors;
+  this.image = data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.thumbnail : url;
+  this.description = data.volumeInfo.description;
 }
+
   
   // 404 Handler
   app.use('*', (request, response) => {
