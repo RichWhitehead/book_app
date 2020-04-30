@@ -16,9 +16,9 @@
     <div>
       <% books.forEach (book => { %> 
     </div>
-    <section>
-    <div>
-      <%= book.image %> 
+    <section id='books'>
+    <div id = "image">
+     <image src= '<%= book.image %>'> 
     </div>
     <div id="title">
       <%= book.title %> 
@@ -27,7 +27,7 @@
       Author Name: <%= book.author %> 
     </div>
     <div>
-      Description: <%= book.description %> 
+      <!-- Description: <%= book.description %>  -->
     </div>
       <% }); %>
     </div>
