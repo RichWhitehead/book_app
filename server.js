@@ -63,7 +63,7 @@ function Book(data){
 }
 
 // Query Database
-const SQL = 'SELECT * FROM tasks';
+const SQL = 'SELECT * FROM books';
 client.query(SQL)
 .then(results => {
 
