@@ -62,6 +62,16 @@ function Book(data){
   this.description = data.volumeInfo.description;
 }
 
+// Query Database
+const SQL = 'SELECT * FROM tasks';
+client.query(SQL)
+.then(results => {
+
+})
+
+.catch(error => {
+  throw new Error(error);
+})
   
   // 404 Handler
   app.use('*', (request, response) => {
@@ -79,4 +89,9 @@ function Book(data){
   app.listen( PORT, () => console.log(`Server running on ${PORT}`));
 }
 
-startServer();
+client.connect()
+.then ( () =>{
+  startServer(PORT);
+})
+.catch(error => console.error(error.message));
+// startServer();
