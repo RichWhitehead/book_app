@@ -1,8 +1,10 @@
-DROP TABLE IF EXISTS task;
-CREATE TABLE tasks (
+DROP TABLE IF EXISTS books;
+CREATE TABLE books (
 id SERIAL PRIMARY KEY,
-task VARCHAR (255),
-assignee VARCHAR (100),
-category VARCHAR (100),
-conplete VARCHAR (10),
+author VARCHAR (255),
+title VARCHAR (255),
+isbn VARCHAR (255),
+image_url VARCHAR (255),
+_description VARCHAR (255),
+bookshelf VARCHAR (255),
 )

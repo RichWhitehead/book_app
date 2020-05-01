@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Home</title>
+  <link rel="stylesheet" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+  <header>
+    <h1>Books</h1>
+  </header>
+  <main>
+    Home Page
+  psql</main>
+    <ul>
+      <% books.forEach(task => { %>
+        <li id= "card">
+          <img">
+          <h2>
+          <%=book.title %>
+          </h2>
+          <p>
+            <%= book.author %>
+          </p>
+          <p>
+            <%= book.descrition %>
+          </p>
+          <p>
+            $<%=book.amount %>
+          </p>
+          <button id="deleteBOOK">Delete Book</button>
+        </li>
+  <footer>
+    &copy; Whitehead and Smith 2020
+  </footer>
+  <script src="/js/app.js"></script>
+</body>
+
+</html>
