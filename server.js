@@ -39,11 +39,13 @@ app.get ('/searchForm', (request, response) => {
 });
 // 
 app.post ('/search', (request, response) => {
+  console.log('request.body', request.body.searchby);
+  console.log('XXXXXXXXXXXXXXXX',request.body.search);
   let url = 'https://www.googleapis.com/books/v1/volumes';
   let queryObject = { 
     q:`${request.body.searchby}: ${request.body.search}`,
 };
-console.log(queryObject);
+// console.log('queryObject', queryObject);
 superagent.get (url)
 .query(queryObject)
 .then(results => {
@@ -57,21 +59,24 @@ let url = 'https://i.imgur.com/J5LVHEL.jpg';
 
 function Book(data){
   this.title = data.volumeInfo.title; 
-  this.author = data.volumeInfo.authors;
+  this.author = data.volumeInfo.author;
   this.image = data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.thumbnail : url;
   this.description = data.volumeInfo.description;
 }
 
-// Query Database
-const SQL = 'SELECT * FROM books';
-client.query(SQL)
-.then(results => {
+// Query Database for all to do items
 
-})
+app.get('/', (request, response) => {
+  const SQL = 'SELECT * FROM books';
+  client.query(SQL)
+    .then (results => {
+      response.status(200).render('pages/index.ejs', {books:results.rows});
+    })
+    .catch ( error => {
+      throw new Error('Oh No! There is an Error', error);
+    });
+});
 
-.catch(error => {
-  throw new Error(error);
-})
   
   // 404 Handler
   app.use('*', (request, response) => {
