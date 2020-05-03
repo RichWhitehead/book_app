@@ -76,7 +76,7 @@ app.get('/', (request, response) => {
     });
 });
 
-// add new book to database
+// // add new book to database
 // app.post('/add', (request, response) => {
 //   console.log(request.body);
 //   const SQL = `
