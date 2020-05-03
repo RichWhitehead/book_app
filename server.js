@@ -39,8 +39,6 @@ app.get ('/searchForm', (request, response) => {
 });
 // 
 app.post ('/search', (request, response) => {
-  console.log('request.body', request.body.searchby);
-  console.log('XXXXXXXXXXXXXXXX',request.body.search);
   let url = 'https://www.googleapis.com/books/v1/volumes';
   let queryObject = { 
     q:`${request.body.searchby}: ${request.body.search}`,
@@ -62,6 +60,7 @@ function Book(data){
   this.author = data.volumeInfo.author;
   this.image = data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.thumbnail : url;
   this.description = data.volumeInfo.description;
+  this.amount = data.saleInfo.listPrice ? data.saleInfo.listPrice.amount : ' Unknown.';
 }
 
 // Query Database for all to do items
@@ -73,9 +72,34 @@ app.get('/', (request, response) => {
       response.status(200).render('pages/index.ejs', {books:results.rows});
     })
     .catch ( error => {
-      throw new Error('Oh No! There is an Error', error);
+      throw new Error('Oh No! There is an Error!', error);
     });
 });
+
+// add new book to database
+// app.post('/add', (request, response) => {
+//   console.log(request.body);
+//   const SQL = `
+//     INSERT INTO books (author, title, isbn, image_url, _description, bookshelf, amount)
+//     VALUES ($1, $2, $3, $4, $5, $6, $7)
+//   `;
+//   const VALUES = [
+//     request.body.author,
+//     request.body.title,
+//     request.body.isbn,
+//     request.body.image_url,
+//     request.body._description,
+//     request.body.bookshelf,
+//     request.body.amount
+//   ];
+//   client.query(SQL, VALUES)
+//     .then( () => {
+//       response.status(200).redirect('/');
+//     })
+//     .catch( error => {
+//       console.error(error.message);
+//     });
+// });
 
   
   // 404 Handler
