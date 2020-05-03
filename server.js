@@ -10,7 +10,7 @@ app.use( express.urlencoded({extended:true }));
 app.use( express.static('./www'));
 
 
-const client = new pg.Client (process.env.DATABASE);
+const client = new pg.Client (process.env.DATABASE_URL);
 app.set ('view engine', 'ejs');
 
 
