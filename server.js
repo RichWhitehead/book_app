@@ -16,9 +16,9 @@ app.set ('view engine', 'ejs');
 
 
 
-app.get('/', (request, response) => {
-  response.status(200).send('Hello World');
-});
+// app.get('/', (request, response) => {
+//   response.status(200).send('Hello World');
+// });
 
 app.get('/person', (request, response) => {
   response.status(200).send(`Welcome, ${request.query.name}, your hair is ${request.query.hair}`);
@@ -34,7 +34,7 @@ app.get('/badthing', (request,response) => {
 });
 
 
-app.get ('/searchForm', (request, response) => {
+app.get ('/', (request, response) => {
   response.status(200).render('pages/search-form');
 });
 // 
