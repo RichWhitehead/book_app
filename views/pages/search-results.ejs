@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <title>Books!</title>
@@ -15,10 +15,11 @@
   <main>
     <div>
       <% books.forEach (book => { %> 
-    </div>
+      </div>
+      <form method="post" action="/add">
     <section id='books'>
-    <div id = "image">
-     <image src= '<%= book.image %>'></image>
+      <div id = "image">
+        <image src= '<%= book.image %>'></image>
     </div>
     <div id="title">
       <%= book.title %> 
@@ -31,13 +32,12 @@
     </div>
     <div>Amount: <%book.amount%> 
     </div>
+    <button type="submit">Add Book</button>
       <% }); %>
   </section>
-  </main> -->
-
-  
-
-  <!-- <script src="/js/app.js"></script>
+  </form>
+  </main> 
+<script src="/js/app.js"></script>
 </body>
 <footer>&copy; Whitehead and Smith 2020</footer>
 </html>
