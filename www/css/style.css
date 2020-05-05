@@ -88,6 +88,8 @@ header {
   text-align:center;
   margin: 10rem auto;
   padding:10rem auto;
+  
+  }
 }
 
 img{
@@ -112,5 +114,4 @@ footer {
   height: 100px;
   line-height: 100px;
   text-align: center;
-}
 }
