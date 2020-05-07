@@ -13,9 +13,9 @@
     <main>
       <h1>Your Library</h1>
         <ul>
-            <% books.forEach( books => { %>
-            <li id="row"> -->
-              <img height="270px" width="200px" src=" <%= books.image_url %>" alt="">
+            <% books.forEach( book => { %>
+            <li id="row">
+              <img height="270px" width="200px" src=" <%= books.image %>" alt="">
               <h3>
                 <%= book.title %>
               </h3> 
@@ -32,11 +32,12 @@
               <form action="delete" method="post">
               <button id="deleteBook">Delete Book</button>
               </form>
+              
             </li>
             <% }) %>
         </ul>
     </main>
     
-    <%- include('./partials/script.ejs') %>
+    <%- include('./partials/scripts.ejs') %>
 </body>
 </html>

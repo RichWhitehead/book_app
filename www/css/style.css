@@ -16,8 +16,11 @@ header {
   background: #111;
   color: ivory;
   height: 150px;
-  line-height: 150px;
   text-align: center;
+}
+header a {
+  color: ivory;
+  text-decoration: none;
 }
 
 #books{
@@ -77,7 +80,6 @@ header {
   background: #111;
   color: ivory;
   height: 150px;
-  line-height: 150px;
   text-align: center;
 }
 
