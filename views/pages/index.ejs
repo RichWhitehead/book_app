@@ -32,7 +32,43 @@
               <form action="/delete/<%= book.id %>" name="" method="POST">
                 <input type="hidden" name="id" value="<%= book.id %>">
                 <button>Delete Book</button>
+
               </form>
+                <button class="update">Update Book</button>
+                  <form class="bookUpdate" method="post" action="/bookUpdate/<%= book.id %>?_method=put">
+                <label>
+                     <p>Title:</p>
+                     <input name="title" class="textInput" value="<%= book.title %>" />
+                      </label>
+                <label>
+                     <p>Author:</p>
+                     <input name="authors" class="textInput" value="<%= book.authors %>" />
+                </label>
+                <label>
+                     <p>ISBN:</p>
+                     <input name="isbn" class="textInput" value="<%= book.isbn %>" />
+                </label>
+                <label>
+                     <p>Description:</p>
+                     <input name="description" class="textInput" value="<%= book.description %>" />
+                </label>
+                <label>
+                     <p>Image:</p>
+                    <input name="image_url" class="textInput" value="<%= book.image_url %>" />
+                </label>
+                <label>
+                    <p>Price:</p>
+                    <input name="amount" class="textInput" value="<%= book.amount %>" />
+                </label>
+                <label>
+                    <p>Saved Bookshelf:</p>
+                    <input name="bookshelf" class="textInput" value="<%= book.bookshelf %>" />
+                </label>
+                    <input type="hidden" name="id" value="<%= book.id %>">
+                    <button type="submit">Save Book</button>
+                    <button type="button" class="cancel-update">Cancel</button> 
+              </form>
+
             </li>
             <% }) %>
         </ul>

@@ -7,7 +7,11 @@ const superagent = require('superagent');
 const PORT = process.env.PORT || 3000;
 const app = express();
 const client = new pg.Client (process.env.DATABASE_URL);
+const methodOverride = require('method-override');
+
 app.set ('view engine', 'ejs');
+
+app.use(methodOverride('_method'));
 app.use( express.urlencoded({extended:true }));
 app.use( express.static('./www'));
 
@@ -103,7 +107,6 @@ app.post('/add', (request, response) => {
 });
 
 // delete book from database
-// delete book from database
 app.post('/delete/:id',(request,response) => {
   let id = request.body.id;
   const SQL = 'DELETE FROM books WHERE id=$1';
@@ -116,6 +119,29 @@ app.post('/delete/:id',(request,response) => {
       console.error(error.message);
     });
 });
+
+app.put('/bookUpdate/:id', (request, response) => {
+  let id = request.body.id;
+  const SQL = 'UPDATE books SET authors = $1, title = $2, isbn = $3, image_url = $4, description = $5, bookshelf = $6, amount = $7 WHERE id = $8';
+  const VALUES = [
+    request.body.authors,
+    request.body.title,
+    request.body.isbn,
+    request.body.image_url,
+    request.body.description,
+    request.body.bookshelf,
+    request.body.amount,
+    request.body.id
+  ];
+  client.query(SQL, VALUES)
+    .then( () => {
+      response.status(200).redirect(`/`);
+    })
+    .catch( error => {
+      console.error(error.message);
+    });
+});
+
 
 // Force error
 app.get('/error', () => {
