@@ -55,8 +55,8 @@ superagent.get (url)
 });
 
 
-let url = 'https://i.imgur.com/J5LVHEL.jpg';
 function Book(data){
+  let url = 'https://i.imgur.com/J5LVHEL.jpg';
   this.title = data.volumeInfo.title || 'no title available'; 
   this.author = data.volumeInfo.authors;
   this.image = data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.thumbnail : url;
@@ -69,7 +69,7 @@ app.get('/', (request, response) => {
   const SQL = 'SELECT * FROM books';
   client.query(SQL)
     .then (results => {
-      response.status(200).render('pages/index', {books:results.rows});
+      response.status(200).render('pages/index', {books:results.rows,});
     })
     .catch ( error => {
       throw new Error('Oh No! There is an Error!', error);
@@ -88,7 +88,7 @@ app.post('/add', (request, response) => {
     request.body.authors,
     request.body.title,
     request.body.isbn,
-    request.body.image,
+    request.body.image_url,
     request.body.description,
     request.body.bookshelf,
     request.body.amount
@@ -103,16 +103,19 @@ app.post('/add', (request, response) => {
 });
 
 // delete book from database
-// app.post('/delete',(request,response) => {
-//   const SQL = 'DELETE FROM books WHERE id=$1';
-//   client.query(SQL)
-//     .then( () => {
-//       response.status(200).redirect('/');
-//     })
-//     .catch( error => {
-//       console.error(error.message);
-//     });
-// });
+// delete book from database
+app.post('/delete/:id',(request,response) => {
+  let id = request.body.id;
+  const SQL = 'DELETE FROM books WHERE id=$1';
+  const VALUES = [id];
+  client.query(SQL, VALUES)
+    .then( () => {
+      response.status(200).redirect('/');
+    })
+    .catch( error => {
+      console.error(error.message);
+    });
+});
 
 // Force error
 app.get('/error', () => {
