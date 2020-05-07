@@ -35,7 +35,7 @@ app.get('/badthing', (request,response) => {
 });
 
 //Routes
-app.get ('/', (request, response) => {
+app.get ('/search-form', (request, response) => {
   response.status(200).render('pages/search-form');
 });
 // 
@@ -54,18 +54,18 @@ superagent.get (url)
 
 });
 
-let url = 'https://i.imgur.com/J5LVHEL.jpg';
 
+let url = 'https://i.imgur.com/J5LVHEL.jpg';
 function Book(data){
-  this.title = data.volumeInfo.title; 
-  this.author = data.volumeInfo.author;
+  this.title = data.volumeInfo.title || 'no title available'; 
+  this.author = data.volumeInfo.authors;
   this.image = data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.thumbnail : url;
   this.description = data.volumeInfo.description;
   this.amount = data.saleInfo.listPrice ? data.saleInfo.listPrice.amount : ' Unknown.';
 }
 
 //Saving books
-app.get('/index', (request, response) => {
+app.get('/', (request, response) => {
   const SQL = 'SELECT * FROM books';
   client.query(SQL)
     .then (results => {
@@ -77,24 +77,25 @@ app.get('/index', (request, response) => {
 });
 
 // add new book to database
+
 app.post('/add', (request, response) => {
-  console.log('You are here', request);
+  console.log('You are here');
   let SQL = `
-    INSERT INTO books (author, title, isbn, image_url, description, bookshelf, amount)
+    INSERT INTO books (authors, title, isbn, image_url, description, bookshelf, amount)
     VALUES ($1, $2, $3, $4, $5, $6, $7)`;
 
   let VALUES = [
-    request.body.author,
+    request.body.authors,
     request.body.title,
     request.body.isbn,
-    request.body.image_url,
+    request.body.image,
     request.body.description,
     request.body.bookshelf,
     request.body.amount
   ];
   client.query(SQL, VALUES)
-    .then( () => {
-      response.status(200).render('pages/index');
+    .then(results => {
+      response.status(200).redirect('/');
     })
     .catch( error => {
       console.error(error.message);
