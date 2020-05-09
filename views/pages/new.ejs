@@ -2,22 +2,19 @@
 <html>
 
 <head>
-
-
   <title>Find a Book</title>
   <link rel="stylesheet" href="/css/reset.css" />
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 
 <body>
-  <%- include('./partials/header.ejs') %>
-  <header>
-  </header>
-  <div id="form">
+<div>
+ <%- include('../partials/header %>
+</div>
     <h2>Search by Title or Author</h2>
-    <form action="/search" method="post">
+    <form method="get" action="../search">
       <div>
-        <input name="search" placeholder="Enter a title or author">
+        <input name="search" placeholder="Enter a title or author" />
       </div>
       <div>
         <label>
@@ -29,15 +26,9 @@
           Author
         </label>
       </div>
-      <button type="submit">Search For Books</button>
+      <button type="submit">Search the Google Books</button>
     </form>
-  </div>
-    <!-- <footer id="circles">
-      <div>t</div>
-      <div>e</div>
-      <div>s</div>
-      <div>t</div>
-  </footer> -->
- 
+  
 </body>
+
 </html>
