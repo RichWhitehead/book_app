@@ -22,7 +22,7 @@
               <p>
                 <%= book.authors %>
               </p> 
-              <p>
+              <p id="desc">
                 <%= book.description %>
                 
               </p>
@@ -35,6 +35,7 @@
 
               </form>
                 <button class="update">Update Book</button>
+                <div id="books">
                   <form class="bookUpdate" method="post" action="/bookUpdate/<%= book.id %>?_method=put">
                 <label>
                      <p>Title:</p>
@@ -48,7 +49,7 @@
                      <p>ISBN:</p>
                      <input name="isbn" class="textInput" value="<%= book.isbn %>" />
                 </label>
-                <label>
+                <label id="desc">
                      <p>Description:</p>
                      <input name="description" class="textInput" value="<%= book.description %>" />
                 </label>
@@ -68,7 +69,7 @@
                     <button type="submit">Save Book</button>
                     <button type="button" class="cancel-update">Cancel</button> 
               </form>
-
+            </div>
             </li>
             <% }) %>
         </ul>
